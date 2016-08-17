@@ -8,10 +8,11 @@
 .spacing{
 	padding: 50px;
 }
+
 .float-left{
 	float: left;
 }
 
 #about{padding-top:50px;height:500px;}
-#programming{padding-top:50px;height:550px;}
-#contact{padding-top:50px;height:550px;}
+#programming{padding-top:50px;height:700px;}
+#contact{padding-top:50px;height:650px;}
