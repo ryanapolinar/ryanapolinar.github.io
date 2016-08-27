@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>Wikipedia Search</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" 
+		integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+		
+		<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+		
+		<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+		<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+		
+		<script src="javascript/wiki-search.js"></script>
+		<link rel="stylesheet" href="css/wiki-search.css">
+
+    </head>
+
+	<body>
+
+		<div class="container">
+		<h1 class="text-center blue-txt" style="padding-top:30px">
+			Wikipedia Search
+		</h1>
+
+		<br><br>
+			
+		<div class="row text-center">
+			<div class="col-xs-2"></div>
+			<div class="col-xs-8">
+				<div class="input-group">
+					<input type="text" class="form-control" id="query" placeholder="Search...">
+					<span class="input-group-btn">
+					  <button class="btn btn-secondary blue" id="search" type="button">
+						  <i class="white-txt fa fa-search" aria-hidden="true"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-xs-2"></div>
+		</div>
+
+		<br>
+
+		<div class="text-center">
+			<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" role="button" 
+				class="btn btn-default white-txt blue overlay" onclick="this.blur();">Random Page</a>
+		</div>
+
+		<br>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8">
+			<div id="data"></div>
+		</div>
+		<div class="col-xs-2"></div>
+
+		</div>
+
+	</body>
+</html>
