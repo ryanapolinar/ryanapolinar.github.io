@@ -1,0 +1,72 @@
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+	background: #6441A5;
+	font-family: 'PT Sans Narrow', sans-serif;
+	position: relative;
+}
+
+.white-txt {
+	color: #F1F1F1;
+}
+
+.purp-txt {
+	color: #6441A5;
+}
+
+.selected {
+	background: #9a7fcc;
+	border: #9a7fcc;
+	color: #F1F1F1;
+}
+
+.selected:hover{
+	background: #432c6d;
+	border: #432c6d;
+	color: #F1F1F1;
+}
+
+.button-border{
+	border: #9a7fcc;
+}
+
+.overflowing {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.user-icon {
+	width: 85px;
+	height: 85px;
+}
+
+.activated{
+	color: #6441A5;
+	border-radius: 25px;
+}
+
+.deactivated {
+	background: #a892d3;
+	border: #a892d3;
+	color: #432c6d;
+	border-radius: 25px;
+}
+
+.space {
+	padding: 15px 30px 30px 30px;
+}
+
+a{
+	color: #6441A5;
+	text-decoration: none;
+}
+a:hover{
+	color: #6441A5;
+}
+a:visited{
+	color: #6441A5;
+	text-decoration: none;
+}

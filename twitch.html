@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitch Streamer Status</title>
+	
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" 
+	integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/twitch.css">
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+    <script src="javascript/twitch.js"></script>
+    
+    
+	</head>
+
+	<body>
+
+    <div class="container-fluid">
+	<h1 class="text-center white-txt" style="font-size: 3em">
+		<i class="fa fa-twitch" aria-hidden="true"></i> Twitch Streamers
+	</h1>
+	
+	<div class="text-center space">
+		<div class="btn-group btn-group-lg">
+		  <button type="button" class="btn btn-default purp-txt button-border selected" id="allBtn">All</button>
+		  <button type="button" class="btn btn-default purp-txt button-border" id="onBtn">Online</button>
+		  <button type="button" class="btn btn-default purp-txt button-border" id="offBtn">Offline</button>
+		</div>
+	</div>
+	
+	<div id="online"></div>
+	<div id="offline"></div>
+	<div id="errored"></div>
+	
+	</div>
+       
+    
+	</body>
+</html>
