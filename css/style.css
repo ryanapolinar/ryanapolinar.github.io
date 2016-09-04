@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-	background-image: url("C:/Users/Ryan/Desktop/Programming/WebDev/ryanapolinar.github.io/images/falling-thumb.png");
+	background-image: url("images/falling-thumb.png");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: right top;
