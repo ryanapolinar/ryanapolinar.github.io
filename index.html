@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Ryan Apolinar</title>
 	<meta name="description" content="The Creations of Ryan Apolinar: Animations & Programming Projects."/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 	<link rel='stylesheet' href='https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.css'>
@@ -16,13 +15,6 @@
     <link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="javascript/javascript.js"></script>
 	
-    <script>
-	  $(document).on('click','.navbar-collapse.in',function(e) {
-		if( $(e.target).is('a') ) {
-			$(this).collapse('hide');
-		}
-		});
-	</script>
 	<!-- super secret stuff man -->
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,35 +29,6 @@
     
   </head>
 
-  <body class="bg-img">
-
-<!--
-NAVBAR STUFF
-
-stuff involving the navbar at the top
--->
-
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand open-sans" href="#"><b>Ryan Apolinar</b></a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="open-sans" id="navlist"><a href="#about" data-toggle="collapse" data-target=".navbar-collapse.in">About</a></li>
-				<li class="open-sans" id="navlist"><a href="#videos" data-toggle="collapse" data-target=".navbar-collapse.in">Videos</a></li>
-				<li class="open-sans" id="navlist"><a href="#programming" data-toggle="collapse" data-target=".navbar-collapse.in">Programming</a></li>
-				<li class="open-sans" id="navlist"><a href="#contact" data-toggle="collapse" data-target=".navbar-collapse.in">Contact</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-
 <!--
 TITLE
 
@@ -73,34 +36,20 @@ my name and subtitles
 -->
 
 <!-- BODY BEGINS HERE -->
-<body data-spy="scroll" data-target="navbar">
-	<div id="about">
-		<div class="container">
-			<h1 class="open-sans text-center amatica"><font size=20px>ryan apolinar</font></h1>
-			<h3 class="open-sans text-center amatica">programmer | animator</h3>
-		</div>
-		<br><br><br><br>
+<body>
 	
-<!--
-ABOUT
-
-short bio and picture
--->
-	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-4 text-center">
-			<img class="img-rounded" src="images/headshot.jpg" alt="Ryan Apolinar" width="200" height="200"></img>
-		</div>
-		<div class="col-sm-4">
-			<h5 class="open-sans lead">
-			Ryan Apolinar is an animator and programmer. He is currently pursuing a Bachelor's Degree in 
-			Computer Science at University of California, Irvine. 
+	<div id="head">
+		<div class="container">
+			<h1 class="text-center amatica">ryan apolinar</h1>
+			
+			<h5 class="open-sans text-center">
+				<a href="index.html"><strong>videos</strong></a> | 
+				<a href="programming.html">programming</a> | 
+				<a href="about.html">about</a> |
+				<a href="contact.html">contact</a> 
 			</h5>
 		</div>
-		<div class="col-sm-2"></div>
 	</div>
-	<br><br><br><br><br><br><br>
-
 <!--
 VIDEOS
 
@@ -108,9 +57,6 @@ portfolio for videos
 -->
 	
 	<div id="videos">
-		<h1 class="text-center amatica">VIDEOS</h1>
-		
-		<br>
 		
 		<div class="row">
 			<div class="col-xs-2"></div>
@@ -183,153 +129,7 @@ portfolio for videos
 			<div class="col-xs-2"></div>
 		</div>
 	</div>
-	
-<!--
-PROGRAMMING
 
-portfolio for programming
--->
-
-	<div id="programming">
-		<h1 class="text-center amatica">PROGRAMMING</h1>
-		
-		<br><br>
-		
-				<div class="row">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-4 text-right">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="calculator.html" target="_blank"><img alt="Calculator" 
-					title="Calculator" src="images/calculator-thumbnail.jpg"></a>
-					<h5 class="open-sans"><strong>Calculator</strong></h5>
-					<h6 class="open-sans">
-						Basic calculator that can multiply, divide, add, and subtract. Programmed in 
-						Javascript, styled with CSS.
-					</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-4 text-left">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="twitch.html" target="_blank"><img alt="Twitch Streamer App" 
-					title="Twitch Streamer App" src="images/twitch-thumb.jpg"></a>
-					<h5 class="open-sans"><strong>Twitch Streamer Status</strong></h5>
-					<h6 class="open-sans">Website that displays a list of Twitch streamers and their status.</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-2"></div>
-		</div>
-		
-		<br><br><br>
-		
-		<div class="row">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-4 text-right">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="quote-machine.html" target="_blank"><img alt="Random Quote Generator" 
-					title="Random Quote Generator" src="images/randomquotegen-thumb.png"></a>
-					<h5 class="open-sans"><strong>Random Quote Generator</strong></h5>
-					<h6 class="open-sans">Generates a random quote and lets the user post the quote on Twitter.</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-4 text-left">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="weather.html" target="_blank"><img alt="Local Weather" 
-					title="Local Weather" src="images/localweather-thumb.jpg"></a>
-					<h5 class="open-sans"><strong>Local Weather</strong></h5>
-					<h6 class="open-sans">A website that displays the local weather.</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-2"></div>
-		</div>
-		
-		<br><br><br>
-		
-		<div class="row">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-4 text-right">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="https://github.com/ryanapolinar/Rochambeau-Plus" target="_blank"><img alt="Rochambeau+" 
-					title="Rochambeau+" src="images/rochambeauplus-thumb.jpg"></a>
-					<h5 class="open-sans"><strong>Rochambeau+</strong></h5>
-					<h6 class="open-sans">A rock-paper-scissors blitz game created with Unity and C#.</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-4 text-left">
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 text-center">
-					<a href="wiki-search.html" target="_blank"><img alt="Wikipedia Search" 
-					title="Wikipedia Search" src="images/wikisearch-thumb.jpg"></a>
-					<h5 class="open-sans"><strong>Wikipedia Search Engine</strong></h5>
-					<h6 class="open-sans">Allows a user to perform a search on Wikipedia and view the results.</h6>
-				</div>
-				<div class="col-xs-2"></div>
-			</div>
-			<div class="col-xs-2"></div>
-		</div>
-		
-	</div>
-
-<!--
-CONTACT
-
-place where people may find my contact information
--->
-	<div id="contact" class="container">
-		<p><h1 class="text-center amatica">CONTACT</h1></p>
-	
-		<br><br>
-	
-		<div class="text-center open-sans">
-			<img src="images/electronic-mail.png"></img>
-		</div>
-	
-		<br><br>
-	
-		<div class="row">
-			<div class="col-xs-5"></div>
-			<div class="col-xs-1 text-center">
-				<a class="btn-default" href="https://www.youtube.com/channel/UCfQiEjuzEnw2yFKoz-PNrmQ" target="_blank" role="button">
-					<h1><i class="fa fa-youtube-square"></i></h1>
-				</a>
-			</div>
-			<div class="col-xs-1 text-center">
-				<a class="btn-default" href="https://twitter.com/apolinarryan" target="_blank" role="button">
-					<h1><i class="fa fa-twitter-square"></i></h1>
-				</a>
-			</div>
-			<div class="col-xs-5"></div>
-		</div>
-	
-		<br>
-			
-		<div class="row">
-			<div class="col-xs-5"></div>
-			<div class="col-xs-1 text-center">
-				<a class="btn-default" href="https://www.linkedin.com/in/ryanapolinar" target="_blank" role="button">
-					<h1><i class="fa fa-linkedin-square"></i></h1>
-				</a>
-			</div>
-			<div class="col-xs-1 text-center">
-				<a class="btn-default" href="https://www.instagram.com/apolinar.exe/" target="_blank" role="button">
-					<h1><i class="fa fa-instagram"></i></h1>
-				</a>
-			</div>
-			<div class="col-xs-5"></div>
-		</div>
-			
-		<br><br><br><br><br>
-		<h6 class="text-center open-sans">coded by Ryan Apolinar.</h6>
-	</div>
 </body>
 
     
