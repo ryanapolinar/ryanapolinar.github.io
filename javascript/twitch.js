@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var users = ["ESL_SC2", "ogamingoverwatch", "cretetion", "freecodecamp", "proleaguecsgo", "tsm_dyrus", "brunofin", "Non-Existant User"];
+	var users = ["ESL_SC2", "ogamingoverwatch", "cretetion", "freecodecamp", "proleaguecsgo", "tsm_dyrus", "brunofin", "NonExistantUser"];
 	
 	for (var i = 0; i < users.length; i++){
 		constructCell(users[i]);
@@ -53,38 +53,65 @@ function showUsers(selection){
 
 //creates api url
 function makeURL(type, username){
-	return "https://api.twitch.tv/kraken/" + type + "/" + username + "?callback=?";
+	return "https://api.twitch.tv/kraken/" + type + "/" + username;
 }
 
 function constructCell(user){
 	//null = offline, undefined = closed/DNE
-	$.getJSON(makeURL("streams", user), function(data){
-		if (data.hasOwnProperty('stream')){
-			if (data.stream === null){
-				//user isn't streaming
-				$.getJSON(makeURL("channels", user), function(data){
-					var streamer = {};
-					streamer["name"] = data.display_name;
-					streamer["status"] = "Offline";
-					streamer["game"] = "";
-					streamer["img"] = data.logo;
-					streamer["url"] = data.url;
-					displayCell(streamer);
-				});
-			}else{
-				//user is online and streaming
-				$.getJSON(makeURL("channels", user), function(data){
-					var streamer = {};
-					streamer["name"] = data.display_name;
-					streamer["status"] = "Online - " + data.game;
-					streamer["game"] = data.status;
-					streamer["img"] = data.logo;
-					streamer["url"] = data.url;
-					displayCell(streamer);
-				});
+	$.ajax({
+		type: "GET",
+		url: makeURL("streams", user),
+		headers: {
+			'Client-ID': '5hqhbsnzwyue9lidd3yi8v5rsubu6oz'
+		},
+		success: function(data){
+			if (data.hasOwnProperty('stream')){
+				if (data.stream === null){
+					//user isn't streaming
+					$.ajax({
+						type: "GET",
+						url: makeURL("channels", user),
+						headers: {
+							'Client-ID': '5hqhbsnzwyue9lidd3yi8v5rsubu6oz'
+						},
+						success: function(data){
+							/*
+							console.log(data);
+							*/
+							var streamer = {};
+							streamer["name"] = data.display_name;
+							streamer["status"] = "Offline";
+							streamer["game"] = "";
+							streamer["img"] = data.logo;
+							streamer["url"] = data.url;
+							displayCell(streamer);
+						}
+					});
+				}else{
+					//user is online and streaming
+					$.ajax({
+						type: "GET",
+						url: makeURL("channels", user),
+						headers: {
+							'Client-ID': '5hqhbsnzwyue9lidd3yi8v5rsubu6oz'
+						},
+						success: function(data){
+							/*
+							console.log(data);
+							*/
+							var streamer = {};
+							streamer["name"] = data.display_name;
+							streamer["status"] = "Online - " + data.game;
+							streamer["game"] = data.status;
+							streamer["img"] = data.logo;
+							streamer["url"] = data.url;
+							displayCell(streamer);
+						}
+					});
+				}
 			}
-		}else if (data.hasOwnProperty('error')){
-			//user doesn't exist or closed account
+		},
+		error: function(data){
 			var streamer = {};
 			streamer["name"] = user;
 			streamer["img"] = "https://placehold.it/85?text=?";
