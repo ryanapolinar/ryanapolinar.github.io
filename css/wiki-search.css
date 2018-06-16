@@ -1,0 +1,30 @@
+body {
+	font-family: 'Crete Round', serif;
+	background: #c6d7ff;
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.blue {
+	background: #5054f8;
+}
+
+.blue-txt {
+	color: #263566;
+}
+
+.white-txt {
+	color: white;
+}
+
+.overlay:hover{
+	background: #060bb0;
+	color: #AAA;
+}
+
+.btn-secondary:hover{
+	background: #060bb0;
+	color: #AAA;
+}

@@ -1,0 +1,89 @@
+body {
+	background-color: #DBB;
+	font-family: 'Nova Square', sans-serif;
+}
+
+.lit-fix {
+	margin-top: -10px;
+	color: #833;
+}
+
+.display {
+	background-color: #FEE;
+	width: 200px;
+	margin: auto;
+	padding-right: 10px
+}
+
+.num-btn {
+	background-color: #FEE;
+	width: 50px;
+	height: 50px;
+	border: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.num-btn:hover {
+	background-color: #DAA;
+}
+
+.func-btn {
+	background: #733;
+	color: white;
+	width: 50px;
+	height: 50px;
+	border: none;
+}
+
+.func-btn:hover {
+	background-color: #511;
+}
+
+.op-btn {
+	background: #A55;
+	color: white;
+	width: 50px;
+	height: 50px;
+	border: none;
+}
+
+.op-btn:hover {
+	background-color: #822;
+}
+
+.wide {
+	width: 100px;
+}
+
+.shadow {
+	box-shadow: 10px 10px 0px 3px #C99;
+}
+
+.display-shadow {
+	box-shadow: 10px 20px 0px 3px #C99;
+}
+
+.signature {
+	padding-top: 50px;
+	color: #A55;
+}
+
+.hide-overflow {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+a{
+	color: #D33;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #D33;
+}
+
+a:visited{
+	color: #D33;
+	text-decoration: none;
+}
