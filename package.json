@@ -1,6 +1,6 @@
 {
-  "name": "ryanapolinar.com",
-  "homepage": "http://ryanapolinar.github.io",
+  "name": "ryanapolinar.github.io",
+  "homepage": "http://ryanapolinar.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
