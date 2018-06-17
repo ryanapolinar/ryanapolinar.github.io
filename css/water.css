@@ -1,0 +1,38 @@
+body {
+  color: white;
+  background-color: black;
+  display: default;
+  overflow-y: hidden;
+}
+
+#title {
+  font-size: 2em;
+  text-align: center;
+}
+
+#canvas {
+  float: left;
+  border-right: solid 3px white;
+}
+
+.description {
+  float:left;
+  margin-left: 2em;
+  margin-top: 2em;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  color:white;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: white;
+}

@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>Shallow Water</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/water.css">
+
+    <!-- JAVASCRIPT -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/gl-matrix-min.js"></script>
+    <script src="js/webgl-utils.js"></script>
+    <script src="water3d.js"></script>
+
+    <!-- 3D RENDERING SHADERS -->
+    <script id="vert-shader-3D" type="x-shader/x-vertex">
+    	attribute vec2 aPos;
+
+    	uniform mat4 mvMatrix;
+    	uniform mat4 prMatrix;
+		uniform float red;
+		uniform float gre;
+		uniform float blu;
+		uniform float norm;
+    	uniform sampler2D sampler;
+      	uniform sampler2D sampler_normals;
+
+		varying vec4 color;
+		varying vec2 vUV;
+
+    	const vec4 dirDif = vec4(0.0, 0.0, 1.0, 0.0);
+    	const vec4 dirHalf = vec4(-0.4034, 0.259, 0.8776, 0.0);
+
+    	void main(void) {
+        //vUV = 0.5 * (position + vec2(1.0, 1.0));
+        if (aPos.x < -0.01 || aPos.y < -0.01)
+        {
+          return;
+        }
+        vec4 water = texture2D(sampler_normals, aPos);
+        float height = water.a;
+    		gl_Position = prMatrix * mvMatrix * vec4(aPos, height, 1.0);
+
+    		vec3 aNorm = water.rgb + vec3(0.0, 0.0, norm);
+    		aNorm = normalize(aNorm);
+    		vec4 rotNorm = mvMatrix * vec4(aNorm, 0.0);
+    		float i = max(0.0, abs(dot(rotNorm, dirDif)));
+    		color = vec4(0.0, i, i, 1); //Change Color
+    		i = pow(max(0.0, abs(dot(rotNorm, dirHalf)) ), 120.0);
+    		color += vec4(i, i, i, 0.0);
+        color += vec4(red, gre, blu, 0.1);
+    	}
+    </script>
+
+    <script id="frag-shader-3D" type="x-shader/x-fragment">
+      precision highp float;
+
+      varying vec4 color;
+      void main(void) {
+        gl_FragColor = color;
+      }
+    </script>
+
+    <!-- 2D VERTEX SHADER -->
+
+    <script id="vert-shader-render" type="x-shader/x-vertex">
+      attribute vec2 position;
+      varying vec2 vUV;
+
+      void main(void) {
+        gl_Position = vec4(position, 0.0, 1.0);
+        vUV = 0.5 * (position + vec2(1.0, 1.0));
+      }
+    </script>
+
+    <!-- SHALLOW WATER SHADERS -->
+
+    <script id="frag-shader-water" type="x-shader/x-fragment">
+      precision highp float;
+
+      uniform float dt;
+      uniform float H;
+      uniform float b;
+      uniform float g;        // acceleration of gravity (9.8 m/s^2)
+      uniform float epsilon;
+      uniform float scale;
+
+      uniform vec2 mouse;
+      uniform float sourceRadius;
+      uniform float sourceFlow;
+
+      uniform sampler2D sampler_water;
+      uniform sampler2D sampler_normals;
+
+      // vUV (u, v) is speed in the horizontal plane
+      varying vec2 vUV;
+
+      void main(void) {
+
+        vec4 water_t  = texture2D(sampler_water, vUV);
+        float h       = water_t.r;
+        vec2 uvSpeed  = water_t.gb;
+
+        vec2 dx=vec2(epsilon, 0.);
+        vec2 dy=vec2(0., epsilon);
+        float du_dx=(texture2D(sampler_water, vUV+dx).g-texture2D(sampler_water, vUV-dx).g)/(2.*scale);
+        float dv_dy=(texture2D(sampler_water, vUV+dy).b-texture2D(sampler_water, vUV-dy).b)/(2.*scale);
+
+        vec3 normals=texture2D(sampler_normals,vUV).xyz;
+
+        //we add 1 to Nz because RGB = (0,0,0) -> Normal = (0,0,1)
+        vec2 d_uvSpeed = -dt * (g * normals.xy/(normals.z+1.) + b*uvSpeed);
+
+        float d_h = -dt * H * (du_dx + dv_dy);
+
+        float dSource = length(vUV-mouse);
+
+        d_h += dt * sourceFlow * (1.0 - smoothstep(0.0, sourceRadius, dSource));
+        gl_FragColor = vec4(h+d_h, uvSpeed+d_uvSpeed, 1.);
+      }
+    </script>
+
+    <script id="frag-shader-copy" type="x-shader/x-fragment">
+      precision highp float;
+
+      uniform float scale;
+      uniform sampler2D sampler;
+
+      varying vec2 vUV;
+
+      void main(void) {
+        float dxy=1./scale;
+        vec4 waterData = texture2D(sampler, vUV);
+        vec4 waterDataAvg=(texture2D(sampler, vUV+vec2(dxy,0.))
+        +.5*texture2D(sampler, vUV+vec2(dxy,dxy))
+        +texture2D(sampler, vUV+vec2(0.,dxy))
+        +.5*texture2D(sampler, vUV+vec2(-dxy,dxy))
+        +texture2D(sampler, vUV+vec2(-dxy,0.))
+        +.5*texture2D(sampler, vUV+vec2(-dxy,-dxy))
+        +texture2D(sampler, vUV+vec2(0.,-dxy))
+        +.5*texture2D(sampler, vUV+vec2(dxy,-dxy)))/6.;
+
+        gl_FragColor = mix(waterData, waterDataAvg, 0.3);
+      }
+    </script>
+
+    <script id="frag-shader-normals" type="x-shader/x-fragment">
+      precision highp float;
+
+      uniform sampler2D sampler;
+      uniform float epsilon, scale; //horizontal scale in meters
+      varying vec2 vUV;
+
+      vec3 getPoint(float x, float y, vec2 uv){
+        float h = texture2D(sampler, uv + vec2(x,y)).r; //water height
+        return vec3(x*scale,y*scale,h);
+      }
+
+      void main(void) {
+        vec3 points[4];
+        points[0]=getPoint(-epsilon,0., vUV);
+        points[1]=getPoint(0.,-epsilon, vUV);
+        points[2]=getPoint(epsilon ,0., vUV);
+        points[3]=getPoint(0. ,epsilon, vUV);
+
+        vec3 normal=normalize(cross(points[1]-points[3], points[2]-points[0]));
+
+        //We substract 1 to Nz because Normal = (0,0,1) -> RGB = (0,0,0)
+        normal.z-=1.;
+
+        float height=texture2D(sampler, vUV).r;
+        gl_FragColor=vec4(normal, height);
+      }
+    </script>
+
+  </head>
+  <body onload='main()'>
+    <div>
+      <canvas id='canvas'></canvas>
+    </div>
+
+    <div class="row">
+    </div>
+
+    <div class="container-fluid">
+      <div id="title" class="unselectable">SHALLOW WATER SIMULATION</div>
+      <div id="authors" class="text-center unselectable">Ryan Apolinar and Jason Tam</div>
+
+      <div class="description">
+
+        <p class="unselectable">
+          This is a shallow water
+          simulation implemented with WebGL.<br>
+          It runs best in Google Chrome or Firefox on a desktop browser.
+        </p>
+        <p class="unselectable">
+          Click anywhere to the left of the white line to create ripples in the water.
+        </p>
+        <p class="unselectable">
+          The top-right corner of the canvas corresponds to the
+          top-right corner of the water.
+        </p>
+        <p class="unselectable">
+          The bottom-left corner of the canvas
+          corresponds to the bottom-left corner of the water.
+        </p>
+
+
+		<table>
+		<tr>
+                    <td width="200px"><b><u>Change Values</u></b></td>
+                    <td width="230px">
+                    </td>
+		</tr>
+		<tr>
+			<td>Gravity</td>
+			<td>
+				<input id= "grav" type="range" min="1" max="20" value="10" onchange="updateGravity(this.value);">
+				(<span id="sliderAmountGravity">1.0</span>)
+			</td>
+		</tr>
+		<tr>
+			<td>Drag</td>
+			<td>
+				<input id= "drag" type="range" min="1" max="5" value="1" onchange="updateDrag(this.value);">
+				(<span id="sliderAmountDrag">1</span>)
+			</td>
+		</tr>
+		<tr>
+			<td>Viscosity</td>
+			<td>
+				<input id= "visc" type="range" min="1" max="10" value="1" onchange="updateVisc(this.value);">
+				(<span id="sliderAmountVisc">1</span>)
+			</td>
+		</tr>
+		<tr>
+			<td>Source Flow Radius</td>
+			<td>
+				<input id= "sfr" type="range" min="1" max="10" value="4" onchange="updateSFR(this.value);">
+				(<span id="sliderAmountSFR">4</span>)
+			</td>
+		</tr>
+		<tr>
+			<td>Tint</td>
+			<td>
+				<input id= "tint" type="range" min="0" max="10" value="0" onchange="updateRed(this.value);">
+				(<span id="sliderAmountRed">0</span>)
+			</td>
+		</tr>
+		<tr>
+			<td width="200px">Alternate Fluids</td>
+			<td width="230px">
+				<select onchange="updateColor(this.value);">
+					<option value="1">Acid</option>
+					<option value="2" selected="selected">Water</option>
+					<option value="3">Honey</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><button onclick="reset()">Reset</button></td>
+		</tr>
+		</table>
+    </div>
+    </div>
+  </body>
+</html>

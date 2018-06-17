@@ -1,0 +1,56 @@
+.portfolio-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: auto;
+}
+
+.portfolio-link {
+  width: 250px;
+  height: 250px;
+}
+
+.portfolio-image {
+  display: block;
+  width: 250px;
+  height: 250px;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  width: 250px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(white, 0.85);
+}
+
+.portfolio-container:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-title {
+  text-decoration: underline;
+  font-size: 1.25em;
+  font-weight: 800;
+}
+
+.portfolio-text {
+  color: black;
+  font-size: 1em;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.portfolio-tech {
+  margin-top: 2em;
+  font-weight: 600;
+}
