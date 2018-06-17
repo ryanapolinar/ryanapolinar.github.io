@@ -561,3 +561,28 @@ function reset(){
   */
   window.location.reload();
 }
+
+$(document).ready( function() {
+    /* Check width on page load*/
+    if ( $(window).width() <= 1365) {
+     $('#description').addClass('container');
+     $('#description').removeClass('description');
+     console.log("window width is small");
+    } else {
+      console.log("window width is large");
+    }
+ });
+
+ $(window).resize(function() {
+    /*If browser resized, check width again */
+    if ($(window).width() <= 1365) {
+     $('#description').addClass('container');
+     $('#description').removeClass('description');
+     console.log("window width is small");
+    } else {
+      $('#description').addClass('description');
+      $('#description').removeClass('container');
+
+      console.log("window width is large");
+    }
+ });

@@ -16,10 +16,13 @@ body {
 }
 
 .description {
+  word-wrap: break-word;
   float:left;
   margin-left: 2em;
   margin-top: 2em;
 }
+
+.
 
 .unselectable {
   -webkit-user-select: none;
