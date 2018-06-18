@@ -73,7 +73,7 @@ a {
 
 #mainNav {
   font-family: 'Open Sans Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: white;
+  background-color: black;
 
   margin-bottom: 0;
 
@@ -88,15 +88,15 @@ a {
 
     padding: 11px;
 
-    color: black;
-    border: 1px solid black;
+    color: white;
+    border: 1px solid white;
   }
   .navbar-brand {
     font-weight: 700;
     padding: 0 8px 0 8px;
   }
   a {
-    color: black;
+    color: white;
     text-decoration: none;
   }
   .navbar-nav {
@@ -132,7 +132,7 @@ a {
       padding-bottom: 0px;
 
       border-bottom: 1px solid none;
-      background: rgba(255,255,255,.8);
+      background: rgba(black, 0.5);
     }
     .nav-link.active {
       outline: none;
@@ -149,11 +149,11 @@ a {
 
   width: 100%;
   height: auto;
-  padding: 200px 0;
+  padding: 100px 0;
 
   text-align: center;
 
-  color: black;
+  color: white;
   background: url('../img/intro-bg.png') no-repeat center top scroll;
   background-color: black;
   -webkit-background-size: cover;
@@ -175,12 +175,12 @@ a {
   }
   @media(min-width:768px) {
     height: 100%;
-    padding: 0;
+    padding: 0px;
     .intro-body {
       .brand-heading {
         font-size: 3em;
         letter-spacing: 10px;
-        margin-top: 1em;
+        margin-top: 0em;
       }
       .intro-text {
         font-size: 22px;
@@ -190,15 +190,21 @@ a {
 }
 
 #down-button {
-  margin-top: 5em;
+  margin-top: 0em;
   padding-bottom: 1em;
   background-color: white;
-  color: $primary;
+  color: white;
   border-color: $primary;
+  background-color: $primary;
 }
 
 #down-button:visited {
   text-decoration: none;
+}
+
+#down-button:hover {
+  background-color: black;
+  border-color: black;
 }
 
 .btn-circle {

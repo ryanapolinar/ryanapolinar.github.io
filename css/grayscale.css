@@ -120,7 +120,7 @@ a:focus, a:hover {
 
 #mainNav {
   font-family: 'Open Sans Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: white;
+  background-color: black;
   margin-bottom: 0;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -130,8 +130,8 @@ a:focus, a:hover {
 #mainNav .navbar-toggler {
   font-size: 14px;
   padding: 11px;
-  color: black;
-  border: 1px solid black;
+  color: white;
+  border: 1px solid white;
 }
 
 #mainNav .navbar-brand {
@@ -140,7 +140,7 @@ a:focus, a:hover {
 }
 
 #mainNav a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -176,7 +176,7 @@ a:focus, a:hover {
     padding-top: 0px;
     padding-bottom: 0px;
     border-bottom: 1px solid none;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.5);
   }
   #mainNav .nav-link.active {
     outline: none;
@@ -191,9 +191,9 @@ a:focus, a:hover {
   display: table;
   width: 100%;
   height: auto;
-  padding: 200px 0;
+  padding: 100px 0;
   text-align: center;
-  color: black;
+  color: white;
   background: url("../img/intro-bg.png") no-repeat center top scroll;
   background-color: black;
   -webkit-background-size: cover;
@@ -220,12 +220,12 @@ a:focus, a:hover {
 @media (min-width: 768px) {
   .masthead {
     height: 100%;
-    padding: 0;
+    padding: 0px;
   }
   .masthead .intro-body .brand-heading {
     font-size: 3em;
     letter-spacing: 10px;
-    margin-top: 1em;
+    margin-top: 0em;
   }
   .masthead .intro-body .intro-text {
     font-size: 22px;
@@ -233,15 +233,21 @@ a:focus, a:hover {
 }
 
 #down-button {
-  margin-top: 5em;
+  margin-top: 0em;
   padding-bottom: 1em;
   background-color: white;
-  color: #435168;
+  color: white;
   border-color: #435168;
+  background-color: #435168;
 }
 
 #down-button:visited {
   text-decoration: none;
+}
+
+#down-button:hover {
+  background-color: black;
+  border-color: black;
 }
 
 .btn-circle {
