@@ -1,6 +1,6 @@
 function getQuote(){	
-	$.getJSON("https://random-quote-generator.herokuapp.com/api/quotes/random", function(json) {
-		//console.log(json);
+	$.getJSON("https://quotesondesign.com/wp-json/posts?callback=?", function(json) {
+		console.log(json);
 		parseQuote(json);
 		updateTweet(json);
 	});
