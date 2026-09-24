@@ -1,9 +1,4 @@
-node_modules
-instructions.md
-gulpfile.js
-space-bg.psd
-<<<<<<< HEAD
-.sass-cache
-=======
-bower_components
->>>>>>> master
+node_modules/
+.sass-cache/
+Thumbs.db
+.DS_Store
